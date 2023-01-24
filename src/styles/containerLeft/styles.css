@@ -1,0 +1,30 @@
+.container-box-left {
+  padding: 50px 35px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-name {
+  height: 48px;
+  width: 317px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 15px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.input-name-player-1 {
+  margin-bottom: 20px;
+  transition: 300ms;
+}
+
+.input-name:hover {
+  border: 2px solid var(--btn-color);
+}

@@ -13,11 +13,42 @@
     <link rel="stylesheet" href="./src/styles/reset.css" />
     <link rel="stylesheet" href="./src/styles/var.css" />
     <link rel="stylesheet" href="./src/styles/global.css" />
+    <link rel="stylesheet" href="./src/styles/containerLeft/styles.css" />
+    <link rel="stylesheet" href="./src/styles/containerCenter/styles.css" />
+    <link rel="stylesheet" href="./src/styles/containerRight/styles.css" />
+    <link
+      rel="stylesheet"
+      href="./src//styles/containerCenter/scoreBoard/styles.css"
+    />
     <title>Jogo da velha</title>
   </head>
   <body>
-    <main id="root"></main>
+    <main id="container">
+      <section class="container-box container-box-left">
+        <div class="input-box">
+          <input
+            class="input-name input-name-player-1"
+            placeholder="jogador 1"
+          />
+          <input
+            class="input-name input-name-player-2"
+            placeholder="jogador 2 "
+          />
+        </div>
+      </section>
+      <section class="container-box container-box-center">
+        <div class="scoreBoard">
+          <h3 class="scoreBoard-title">Placar</h3>
+          <div class="score-wrapper">
+            <strong class="score score-player-1">01</strong>
+            <span class="player-winner">jogador 1 </span>
+            <strong class="score score-player-2">01</strong>
+          </div>
+        </div>
+      </section>
+      <section class="container-box container-box-right"></section>
+    </main>
 
-    <script src="index.js"></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>
