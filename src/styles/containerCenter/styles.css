@@ -4,3 +4,9 @@
   align-items: center;
   padding: 50px 36px 50px 54px;
 }
+
+.text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+}
