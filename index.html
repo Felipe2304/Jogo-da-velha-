@@ -34,12 +34,142 @@
             class="input-name input-name-player-1"
             placeholder="jogador 1"
           />
-          <input
-            class="input-name input-name-player-2"
-            placeholder="jogador 2 "
-          />
+
+          <div class="input-name-and-bot">
+            <input
+              class="input-name input-name-player-2"
+              placeholder="jogador 2 "
+            />
+            <div class="switcher switcher-bot">
+              <div class="switcher-ball switcher-ball-bot"></div>
+            </div>
+          </div>
         </div>
+
+        <div class="game-mode">
+          <h4 class="game-mode-title">Tipo de partida</h4>
+
+          <div class="switcher-mode-text">
+            <span class="mode-text">Melhor de 3</span>
+            <div class="switcher switcher-mode">
+              <div class="switcher-ball switcher-ball-bot"></div>
+            </div>
+            <span class="mode-text">Melhor de 5</span>
+          </div>
+        </div>
+
+        <button class="btn btn-start">Jogar</button>
+
+        <div class="match-historic">
+          <h4 class="match-historic-title">histórico de partidas</h4>
+
+          <ul class="winner-player-list">
+            <li class="winner-player-item">
+              <div class="winner-box">
+                <span class="winner-text">Vencedor</span>
+                <span class="winner-name">Felipe</span>
+              </div>
+
+              <span class="scenery-text">Cenário</span>
+
+              <div class="mini-board-scenery">
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+              </div>
+            </li>
+            <li class="winner-player-item">
+              <div class="winner-box">
+                <span class="winner-text">Vencedor</span>
+                <span class="winner-name">Felipe</span>
+              </div>
+
+              <span class="scenery-text">Cenário</span>
+
+              <div class="mini-board-scenery">
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+              </div>
+            </li>
+            <li class="winner-player-item">
+              <div class="winner-box">
+                <span class="winner-text">Vencedor</span>
+                <span class="winner-name">Felipe</span>
+              </div>
+
+              <span class="scenery-text">Cenário</span>
+
+              <div class="mini-board-scenery">
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+              </div>
+            </li>
+            <li class="winner-player-item">
+              <div class="winner-box">
+                <span class="winner-text">Vencedor</span>
+                <span class="winner-name">Felipe</span>
+              </div>
+
+              <span class="scenery-text">Cenário</span>
+
+              <div class="mini-board-scenery">
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+              </div>
+            </li>
+            <li class="winner-player-item">
+              <div class="winner-box">
+                <span class="winner-text">Vencedor</span>
+                <span class="winner-name">Felipe</span>
+              </div>
+
+              <span class="scenery-text">Cenário</span>
+
+              <div class="mini-board-scenery">
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+                <div class="mini-board-scenery-item">O</div>
+                <div class="mini-board-scenery-item">X</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn btn-restart">Reiniciar</button>
       </section>
+
       <section class="container-box container-box-center">
         <div class="scoreBoard">
           <h3 class="scoreBoard-title">Placar</h3>
@@ -65,6 +195,46 @@
         <h2 class="historic-title text">Histórico de jogadas</h2>
 
         <ul class="historic-move-list">
+          <li class="historic-move-item">
+            <strong class="move-text">O</strong>
+
+            <div class="player-position-move">
+              <span class="player-move-name">jogador 1</span>
+              <span class="position-move-board">primeiro quadrado</span>
+            </div>
+          </li>
+          <li class="historic-move-item">
+            <strong class="move-text">O</strong>
+
+            <div class="player-position-move">
+              <span class="player-move-name">jogador 1</span>
+              <span class="position-move-board">primeiro quadrado</span>
+            </div>
+          </li>
+          <li class="historic-move-item">
+            <strong class="move-text">O</strong>
+
+            <div class="player-position-move">
+              <span class="player-move-name">jogador 1</span>
+              <span class="position-move-board">primeiro quadrado</span>
+            </div>
+          </li>
+          <li class="historic-move-item">
+            <strong class="move-text">O</strong>
+
+            <div class="player-position-move">
+              <span class="player-move-name">jogador 1</span>
+              <span class="position-move-board">primeiro quadrado</span>
+            </div>
+          </li>
+          <li class="historic-move-item">
+            <strong class="move-text">O</strong>
+
+            <div class="player-position-move">
+              <span class="player-move-name">jogador 1</span>
+              <span class="position-move-board">primeiro quadrado</span>
+            </div>
+          </li>
           <li class="historic-move-item">
             <strong class="move-text">O</strong>
 

@@ -1,17 +1,20 @@
 .board {
+  height: 510px;
+  width: 510px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px 12px;
+  gap: 15px 15px;
 }
 
 .board-item {
-  height: 115px;
-  width: 115px;
+  height: 33%;
+  width: 31%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--white);
   border-radius: 15px;
-  line-height: 115px;
-  text-align: center;
   font-size: 100px;
   font-weight: 700;
   color: var(--text-color);
