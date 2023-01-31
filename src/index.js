@@ -8,14 +8,29 @@ const $boardItem6 = document.querySelector(".board-item-6");
 const $boardItem7 = document.querySelector(".board-item-7");
 const $boardItem8 = document.querySelector(".board-item-8");
 const $boardItem9 = document.querySelector(".board-item-9");
+const $scorePlayer1 = document.querySelector(".score-player-1");
+const $scorePlayer2 = document.querySelector(".score-player-2");
 
 let currentMove = "X";
+let player1 = 0;
+let player2 = 0;
 
 const toggleMove = () => {
   if (currentMove === "X") {
     currentMove = "O";
   } else {
     currentMove = "X";
+  }
+};
+
+const addPointPlayerWinner = (resultGame) => {
+  if (resultGame === "X") {
+    player1 += 1;
+    $scorePlayer1.textContent += player1;
+  }
+  if (resultGame === "O") {
+    player2 += 1;
+    $scorePlayer2.textContent += player2;
   }
 };
 
@@ -92,9 +107,8 @@ for (let i = 0; i < 9; i++) {
     if ($boardItem.textContent != "") return;
     $boardItem.textContent = currentMove;
     const resultGame = verifyGame();
-
-    if (resultGame === "X" || resultGame === "O") {
-      console.log(currentMove);
+    if (resultGame != undefined) {
+      addPointPlayerWinner(resultGame);
     }
     toggleMove();
   });
