@@ -102,6 +102,14 @@
   background-color: var(--btn-color);
   color: var(--white);
   margin-bottom: 38px;
+  transition-duration: 500ms;
+}
+
+.button-active {
+  transition-duration: 500ms;
+  background-color: transparent;
+  border: 2px solid rgba(255, 0, 0, 0.644);
+  color: rgba(255, 0, 0, 0.644);
 }
 
 .match-historic {

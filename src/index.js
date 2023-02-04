@@ -10,6 +10,9 @@ const $boardItem8 = document.querySelector(".board-item-8");
 const $boardItem9 = document.querySelector(".board-item-9");
 const $scorePlayer1 = document.querySelector(".score-player-1");
 const $scorePlayer2 = document.querySelector(".score-player-2");
+const $inputNamePlayer1 = document.querySelector(".input-name-player-1");
+const $inputNamePlayer2 = document.querySelector(".input-name-player-2");
+const $buttonStart = document.querySelector(".btn-start");
 
 let currentMove = "X";
 let winner = null;
@@ -24,26 +27,6 @@ const toggleMove = () => {
   }
 };
 
-const addPointPlayerWinner = (resultGame) => {
-  if (resultGame === "X") {
-    player1 += 1;
-    $scorePlayer1.textContent += player1;
-  }
-  if (resultGame === "O") {
-    player2 += 1;
-    $scorePlayer2.textContent += player2;
-  }
-};
-
-const removeMoves = () => {
-  console.log($boardItemAll);
-  setTimeout(function () {
-    $boardItemAll.forEach((moveText) => {
-      moveText.textContent = "";
-    });
-  }, 2000);
-};
-
 const verifyGame = () => {
   if (
     $boardItem1.textContent != "" &&
@@ -52,46 +35,45 @@ const verifyGame = () => {
   ) {
     //linha 1
     winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem4.textContent != "" &&
     $boardItem4.textContent === $boardItem5.textContent &&
     $boardItem5.textContent === $boardItem6.textContent
   ) {
     //linha 2
     winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem7.textContent != "" &&
     $boardItem7.textContent === $boardItem8.textContent &&
     $boardItem8.textContent === $boardItem9.textContent
   ) {
     //linha 3
     winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem1.textContent != "" &&
     $boardItem1.textContent === $boardItem4.textContent &&
     $boardItem4.textContent === $boardItem7.textContent
   ) {
     //coluna 1
     winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem2.textContent != "" &&
     $boardItem2.textContent === $boardItem5.textContent &&
     $boardItem5.textContent === $boardItem8.textContent
   ) {
     //coluna 2
     winner = currentMove;
-    winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem3.textContent != "" &&
     $boardItem3.textContent === $boardItem6.textContent &&
     $boardItem6.textContent === $boardItem9.textContent
@@ -99,45 +81,60 @@ const verifyGame = () => {
     //coluna 3
 
     winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem1.textContent != "" &&
     $boardItem1.textContent === $boardItem5.textContent &&
     $boardItem5.textContent === $boardItem9.textContent
   ) {
     //diagonal 1
     winner = currentMove;
-    winner = currentMove;
+
     return currentMove;
-  }
-  if (
+  } else if (
     $boardItem3.textContent != "" &&
     $boardItem3.textContent === $boardItem5.textContent &&
     $boardItem5.textContent === $boardItem7.textContent
   ) {
     //diagonal 2
+
     winner = currentMove;
+
     return currentMove;
   }
 };
 
-for (let i = 0; i < 9; i++) {
-  const $boardItem = $boardItemAll[i];
-  $boardItem.addEventListener("click", () => {
-    if ($boardItem.textContent != "") return;
-    $boardItem.textContent = currentMove;
-    const resultGame = verifyGame();
+const playerGame = () => {
+  for (let i = 0; i < 9; i++) {
+    const $boardItem = $boardItemAll[i];
+    $boardItem.addEventListener("click", () => {
+      if ($boardItem.textContent != "") return;
+      $boardItem.textContent = currentMove;
+      const resultGame = verifyGame();
 
-    if (resultGame != undefined) {
-      addPointPlayerWinner(resultGame);
-    }
-    if (winner !== null) {
-      removeMoves();
-    }
-    toggleMove();
-  });
-}
+      toggleMove();
+    });
+  }
+};
+let start = false;
+
+const startGame = () => {
+  if (!start) {
+    start = true;
+    playerGame();
+    $buttonStart.classList.add("button-active");
+    $buttonStart.textContent = "Pausar";
+  } else if (start) {
+    start = false;
+    $buttonStart.classList.remove("button-active");
+    $buttonStart.textContent = "Jogar";
+  }
+
+  console.log(start);
+};
+
+$buttonStart.addEventListener("click", startGame);
 
 const $switcherBallBot = document.querySelector(".switcher-ball-bot");
 

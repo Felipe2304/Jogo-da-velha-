@@ -44,3 +44,7 @@ body {
 .btn:active {
   transform: ScaleY(0.94);
 }
+
+.winner-color {
+  color: var(--btn-color);
+}
