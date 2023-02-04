@@ -108,8 +108,8 @@
 .button-active {
   transition-duration: 500ms;
   background-color: transparent;
-  border: 2px solid rgba(255, 0, 0, 0.644);
-  color: rgba(255, 0, 0, 0.644);
+  border: 2px solid var(--btn-color);
+  color: var(--btn-color);
 }
 
 .match-historic {

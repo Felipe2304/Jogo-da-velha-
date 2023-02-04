@@ -1,4 +1,3 @@
-const $boardItemAll = document.querySelectorAll(".board-item");
 const $boardItem1 = document.querySelector(".board-item-1");
 const $boardItem2 = document.querySelector(".board-item-2");
 const $boardItem3 = document.querySelector(".board-item-3");
@@ -8,16 +7,34 @@ const $boardItem6 = document.querySelector(".board-item-6");
 const $boardItem7 = document.querySelector(".board-item-7");
 const $boardItem8 = document.querySelector(".board-item-8");
 const $boardItem9 = document.querySelector(".board-item-9");
+const $boardItemAll = document.querySelectorAll(".board-item");
+const boardItemList = [
+  $boardItem1,
+  $boardItem2,
+  $boardItem3,
+  $boardItem4,
+  $boardItem5,
+  $boardItem6,
+  $boardItem7,
+  $boardItem8,
+  $boardItem9,
+];
+
 const $scorePlayer1 = document.querySelector(".score-player-1");
 const $scorePlayer2 = document.querySelector(".score-player-2");
+
 const $inputNamePlayer1 = document.querySelector(".input-name-player-1");
 const $inputNamePlayer2 = document.querySelector(".input-name-player-2");
+
 const $buttonStart = document.querySelector(".btn-start");
+
+const $playerWinnerText = document.querySelector(".player-winner");
 
 let currentMove = "X";
 let winner = null;
 let player1 = 0;
 let player2 = 0;
+let start = false;
 
 const toggleMove = () => {
   if (currentMove === "X") {
@@ -27,7 +44,15 @@ const toggleMove = () => {
   }
 };
 
-const verifyGame = () => {
+const verifyDraw = () => {
+  const draw = boardItemList.every((item) => {
+    return item.textContent !== "";
+  });
+
+  return draw;
+};
+
+const verifyGame = (fullBoard) => {
   if (
     $boardItem1.textContent != "" &&
     $boardItem1.textContent === $boardItem2.textContent &&
@@ -100,38 +125,75 @@ const verifyGame = () => {
     //diagonal 2
 
     winner = currentMove;
-
     return currentMove;
+  } else if (!winner && fullBoard) {
+    winner = null;
+
+    return "empate";
+  }
+};
+
+const addPoint = (namePlayerValue1, namePlayerValue2) => {
+  if (winner === "X") {
+    player1++;
+    $scorePlayer1.textContent = player1;
+
+    if (namePlayerValue1.length > 0) {
+      $playerWinnerText.textContent = namePlayerValue1 + " venceu";
+    } else {
+      $playerWinnerText.textContent = "jogador 1" + " venceu";
+    }
+  }
+
+  if (winner === "O") {
+    player2++;
+    $scorePlayer2.textContent = player2;
+    $playerWinnerText.textContent = namePlayerValue2 + " venceu";
+    if (namePlayerValue2.length > 0) {
+      $playerWinnerText.textContent = namePlayerValue2 + " venceu";
+    } else {
+      $playerWinnerText.textContent = "Jogador 2" + " venceu";
+    }
+  }
+};
+
+const getPlayerWinner = (resultGame, namePlayerValue1, namePlayerValue2) => {
+  if (resultGame === "X" || resultGame === "O") {
+    addPoint(namePlayerValue1, namePlayerValue2);
+  }
+  if (resultGame === "empate") {
+    $playerWinnerText.textContent = "Empate!";
+    console.log(resultGame);
   }
 };
 
 const playerGame = () => {
+  const namePlayerValue1 = $inputNamePlayer1.value;
+  const namePlayerValue2 = $inputNamePlayer2.value;
+
   for (let i = 0; i < 9; i++) {
     const $boardItem = $boardItemAll[i];
     $boardItem.addEventListener("click", () => {
       if ($boardItem.textContent != "") return;
       $boardItem.textContent = currentMove;
-      const resultGame = verifyGame();
-
+      const resultGame = verifyGame(verifyDraw());
+      getPlayerWinner(resultGame, namePlayerValue1, namePlayerValue2);
       toggleMove();
     });
   }
 };
-let start = false;
 
 const startGame = () => {
   if (!start) {
     start = true;
     playerGame();
     $buttonStart.classList.add("button-active");
-    $buttonStart.textContent = "Pausar";
+    $buttonStart.textContent = "Jogando...";
   } else if (start) {
     start = false;
     $buttonStart.classList.remove("button-active");
     $buttonStart.textContent = "Jogar";
   }
-
-  console.log(start);
 };
 
 $buttonStart.addEventListener("click", startGame);
