@@ -45,11 +45,31 @@ const toggleMove = () => {
 };
 
 const verifyDraw = () => {
-  const draw = boardItemList.every((item) => {
-    return item.textContent !== "";
+  const draw = boardItemList.every((move) => {
+    return move.textContent !== "";
   });
 
   return draw;
+};
+
+const ShowMoveBoard = (position1, position2, position3) => {
+  const positionWinner = [position1, position2, position3];
+
+  positionWinner.forEach((move) => {
+    move.classList.add("show-winner");
+
+    setTimeout(() => {
+      move.classList.remove("show-winner");
+    }, 2000);
+  });
+};
+
+const removeMovesBoard = () => {
+  setTimeout(() => {
+    boardItemList.forEach((move) => {
+      move.textContent = "";
+    });
+  }, 2000);
 };
 
 const verifyGame = (fullBoard) => {
@@ -60,7 +80,7 @@ const verifyGame = (fullBoard) => {
   ) {
     //linha 1
     winner = currentMove;
-
+    ShowMoveBoard($boardItem1, $boardItem2, $boardItem3);
     return currentMove;
   } else if (
     $boardItem4.textContent != "" &&
@@ -70,6 +90,7 @@ const verifyGame = (fullBoard) => {
     //linha 2
     winner = currentMove;
 
+    ShowMoveBoard($boardItem4, $boardItem5, $boardItem6);
     return currentMove;
   } else if (
     $boardItem7.textContent != "" &&
@@ -79,6 +100,7 @@ const verifyGame = (fullBoard) => {
     //linha 3
     winner = currentMove;
 
+    ShowMoveBoard($boardItem7, $boardItem8, $boardItem9);
     return currentMove;
   } else if (
     $boardItem1.textContent != "" &&
@@ -88,6 +110,7 @@ const verifyGame = (fullBoard) => {
     //coluna 1
     winner = currentMove;
 
+    ShowMoveBoard($boardItem1, $boardItem4, $boardItem7);
     return currentMove;
   } else if (
     $boardItem2.textContent != "" &&
@@ -97,6 +120,7 @@ const verifyGame = (fullBoard) => {
     //coluna 2
     winner = currentMove;
 
+    ShowMoveBoard($boardItem2, $boardItem5, $boardItem8);
     return currentMove;
   } else if (
     $boardItem3.textContent != "" &&
@@ -106,6 +130,7 @@ const verifyGame = (fullBoard) => {
     //coluna 3
 
     winner = currentMove;
+    ShowMoveBoard($boardItem3, $boardItem6, $boardItem9);
 
     return currentMove;
   } else if (
@@ -115,6 +140,7 @@ const verifyGame = (fullBoard) => {
   ) {
     //diagonal 1
     winner = currentMove;
+    ShowMoveBoard($boardItem1, $boardItem5, $boardItem9);
 
     return currentMove;
   } else if (
@@ -125,10 +151,10 @@ const verifyGame = (fullBoard) => {
     //diagonal 2
 
     winner = currentMove;
+    ShowMoveBoard($boardItem3, $boardItem5, $boardItem7);
+    winner = null;
     return currentMove;
   } else if (!winner && fullBoard) {
-    winner = null;
-
     return "empate";
   }
 };
@@ -160,10 +186,11 @@ const addPoint = (namePlayerValue1, namePlayerValue2) => {
 const getPlayerWinner = (resultGame, namePlayerValue1, namePlayerValue2) => {
   if (resultGame === "X" || resultGame === "O") {
     addPoint(namePlayerValue1, namePlayerValue2);
+    removeMovesBoard();
   }
   if (resultGame === "empate") {
     $playerWinnerText.textContent = "Empate!";
-    console.log(resultGame);
+    removeMovesBoard();
   }
 };
 
