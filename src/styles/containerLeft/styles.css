@@ -128,7 +128,7 @@
   text-align: center;
 }
 
-.winner-player-list {
+.match-list {
   display: flex;
   flex-direction: column;
   max-height: 120px;
@@ -137,12 +137,12 @@
   cursor: ns-resize;
 }
 
-.winner-player-list::-webkit-scrollbar {
+.match-list::-webkit-scrollbar {
   width: 6px;
   background-color: transparent;
 }
 
-.winner-player-item {
+.match-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -150,7 +150,7 @@
   margin-bottom: 20px;
 }
 
-.winner-player-item:last-child {
+.match-list-item:last-child {
   margin-bottom: 0;
 }
 

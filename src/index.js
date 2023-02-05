@@ -20,6 +20,8 @@ const boardItemList = [
   $boardItem9,
 ];
 
+const matchHistoryList = [];
+
 const $scorePlayer1 = document.querySelector(".score-player-1");
 const $scorePlayer2 = document.querySelector(".score-player-2");
 
@@ -30,11 +32,17 @@ const $buttonStart = document.querySelector(".btn-start");
 
 const $playerWinnerText = document.querySelector(".player-winner");
 
+const $switcherBallBot = document.querySelector(".switcher-ball-bot");
+const $switcherBallMode = document.querySelector(".switcher-ball-mode");
+
+const $matchList = document.querySelector(".match-list");
+
 let currentMove = "X";
 let winner = null;
 let player1 = 0;
 let player2 = 0;
 let start = false;
+let switcherModeActive = false;
 
 const toggleMove = () => {
   if (currentMove === "X") {
@@ -60,7 +68,7 @@ const ShowMoveBoard = (position1, position2, position3) => {
 
     setTimeout(() => {
       move.classList.remove("show-winner");
-    }, 2000);
+    }, 1000);
   });
 };
 
@@ -69,7 +77,7 @@ const removeMovesBoard = () => {
     boardItemList.forEach((move) => {
       move.textContent = "";
     });
-  }, 2000);
+  }, 1000);
 };
 
 const verifyGame = (fullBoard) => {
@@ -152,9 +160,9 @@ const verifyGame = (fullBoard) => {
 
     winner = currentMove;
     ShowMoveBoard($boardItem3, $boardItem5, $boardItem7);
-    winner = null;
     return currentMove;
-  } else if (!winner && fullBoard) {
+  } else if (fullBoard) {
+    winner = null;
     return "empate";
   }
 };
@@ -183,13 +191,88 @@ const addPoint = (namePlayerValue1, namePlayerValue2) => {
   }
 };
 
+const toggleSwitcherMode = () => {
+  if (switcherModeActive) {
+    $switcherBallMode.classList.add("active");
+    teste(5);
+  }
+
+  if (!switcherModeActive) {
+    $switcherBallMode.classList.remove("active");
+    teste(3);
+  }
+
+  switcherModeActive = !switcherModeActive;
+};
+$switcherBallMode.addEventListener("click", toggleSwitcherMode);
+
+const getScenario = () => {
+  const scenario = [];
+  for (const boardItem of $boardItemAll) {
+    const boardText = boardItem.textContent;
+    scenario.push(boardText);
+  }
+
+  matchHistoryList.push(scenario);
+  setScenario();
+};
+
+const setScenario = () => {
+  $matchList.innerHTML = "";
+
+  console.log();
+  matchHistoryList.forEach((scenario) => {
+    printScenario(scenario);
+  });
+};
+
+const printScenario = (scenario) => {
+  const matchListItem = document.createElement("li");
+  matchListItem.classList.add("match-list-item");
+
+  const winnerBox = document.createElement("div");
+  winnerBox.classList.add("winner-box");
+
+  const winnerText = document.createElement("span");
+  winnerText.classList.add("winner-text");
+  winnerText.textContent = "Vencedor";
+
+  const winnerName = document.createElement("span");
+  winnerName.classList.add("winner-name");
+  winnerName.textContent = "";
+
+  const scenarioText = document.createElement("span");
+  scenarioText.classList.add("scenery-text");
+  scenarioText.textContent = "Cenário";
+
+  const miniBoardScenario = document.createElement("div");
+  miniBoardScenario.classList.add("mini-board-scenery");
+  winnerBox.appendChild(winnerText);
+  winnerBox.appendChild(winnerName);
+
+  matchListItem.appendChild(winnerBox);
+  matchListItem.appendChild(scenarioText);
+
+  scenario.forEach((move) => {
+    const miniBoardScenarioItem = document.createElement("div");
+    miniBoardScenarioItem.classList.add("mini-board-scenery-item");
+    miniBoardScenarioItem.textContent = move;
+    miniBoardScenario.appendChild(miniBoardScenarioItem);
+  });
+
+  matchListItem.appendChild(miniBoardScenario);
+  $matchList.appendChild(matchListItem);
+};
+
 const getPlayerWinner = (resultGame, namePlayerValue1, namePlayerValue2) => {
   if (resultGame === "X" || resultGame === "O") {
     addPoint(namePlayerValue1, namePlayerValue2);
+    console.log(resultGame);
     removeMovesBoard();
   }
   if (resultGame === "empate") {
     $playerWinnerText.textContent = "Empate!";
+    getScenario("empate");
     removeMovesBoard();
   }
 };
@@ -224,10 +307,3 @@ const startGame = () => {
 };
 
 $buttonStart.addEventListener("click", startGame);
-
-const $switcherBallBot = document.querySelector(".switcher-ball-bot");
-
-const toggleSwitcher = () => {};
-$switcherBallBot.addEventListener("click", () => {
-  $switcherBallBot.classList.toggle("active");
-});
